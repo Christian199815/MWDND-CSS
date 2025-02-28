@@ -29,6 +29,12 @@ Deze week lag de focus op het bedenken van een concept en het uitvoeren van de e
       <figcaption>Opdrachten onderzoek</figcaption>
     </figure>
   </li>
+  <li>
+    <figure>
+      <img src="/doc-images/result-wk1.png" style="width: 25em; aspect-ratio: 1/1;">
+      <figcaption>Resultaat week 1</figcaption>
+    </figure>
+  </li>
 </ul>
 
 ## Installatie & Gebruik
