@@ -16,10 +16,8 @@ Deze week lag de focus op het bedenken van een concept en het uitvoeren van de e
 - Eerste prototype met verschillende vlakken wat als achtergrond kan gaan fungeren
 
 ### Afbeeldingen Week 1
-- ![Schets ontwerp](pad/naar/afbeelding1.jpg)
-- ![CSS Grid experiment](pad/naar/afbeelding2.jpg)
-- ![Flexbox layout](pad/naar/afbeelding3.jpg)
-
+- ![Schets ontwerp](doc-images/idee.jpg)
+- ![3 opdrachten onderzoek](doc-images/opdrachten.jpg)
 
 ## Installatie & Gebruik
 
