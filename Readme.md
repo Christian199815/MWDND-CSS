@@ -51,18 +51,18 @@ In eerste instantie was ik van plan om mijn gebouwen te gaan maken zoals in het 
 ### De doos
 Een doos bestaat net als een normale doos uit zes vlakken. deze vlakken hebben een zoals een vierkant elk een breedte en hoogte. Doormiddel van custom properties in css is het mogelijk om heel gemakkelijk op te slaan wat de hoogte, breedte en diepte van de doos zullen zijn.
 
-<img src="/doc-images/idee.JPG" style="width: 25em; aspect-ratio: 1/1;">
+<img src="/doc-images/box1.png" style="width: 25em; aspect-ratio: 1/1;">
 
 
 ### De joystick
 Ik ben deze week ook al van start gegaan met een eerste idee voor de interface, voor het bedienings paneel is het plan om een aantal knoppen te hebben. Maar op het bedienings paneel wil ik ook een soort joysticks gebruiken waar de gebruiker de kraan mee kan bedienen. Voor de bediening heb ik gebruik gemaakt van 8 vlakken die ik van elkaar af heb gemaakt doormiddel van verschillende border radius instellingen. Om te visualiseren dat de joystick werkt heb ik een vierkant op het scherm dat beweegt naar aanleiding waar de gebruiker op de vlakken beweegt. De joystick is een cirkel die ik animeer in de richting van het vlak waar de gebruiker over heen beweegt.
 
-<img src="/doc-images/idee.JPG" style="width: 25em; aspect-ratio: 1/1;">
+<img src="/doc-images/joystick.png" style="width: 25em; aspect-ratio: 1/1;">
 
 ### De stad
 Voor de stad ben ik begonnen met het verder ontwikkelen van de doos die ik in eerste instantie had gemaakt. In de tweede iteratie slag ben ik gaan kijken hoe ik ervoor kan zorgen dat ik de doos altijd van hoogte kan laten veranderen zodat ik het gevoel van verschillende gebouwen met verschillende hoogtes kan wekken. Hiervoor ben ik erachter gekomen dat wanneer ik de alle vlakken behalve het bovenste vlak aan de 'bottom' als transform-origin zet, deze als een soort ankers blijven zitten. Nadat het me was gelukt om de gebouwen vast te zetten kwam het moment dat ik een plane maakte waar deze gebouwen op zouden komen te staan. Doormiddel van display:grid maak ik een raster waar ik alle blokken op vast kan zetten. Waar ik tegen aan liep was dat ik de <code>transform-behaviour: 3d-perspective</code> ook op deze plane moest zetten om de gebouwen in de hoogte te kunnen zien. Uiteindelijk lukte het me om de gebouwen aan de raster te koppelen, echter wilde de gebouwen niet de gehele grootte van het grid vlak aan nemen. De oplossing was elk gebouw in een eigen container stoppen en in deze containers de custom properties voor de breedte en diepte vast zetten zoals deze uit het raster komen.
 
-<img src="/doc-images/idee.JPG" style="width: 25em; aspect-ratio: 1/1;">
+<img src="/doc-images/city.png" style="width: 25em; aspect-ratio: 1/1;">
 
 ## Doelen voor volgende week
 empty
