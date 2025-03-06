@@ -59,6 +59,13 @@ Ik ben deze week ook al van start gegaan met een eerste idee voor de interface, 
 
 <img src="/doc-images/joystick.png" style="width: 25em; aspect-ratio: 1/1;">
 
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="YPzZpeq" data-pen-title="joystick" data-user="Christian199815" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/Christian199815/pen/YPzZpeq">
+  joystick</a> by Christian Donker (<a href="https://codepen.io/Christian199815">@Christian199815</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://public.codepenassets.com/embed/index.js"></script>
+
 ### De stad
 Voor de stad ben ik begonnen met het verder ontwikkelen van de doos die ik in eerste instantie had gemaakt. In de tweede iteratie slag ben ik gaan kijken hoe ik ervoor kan zorgen dat ik de doos altijd van hoogte kan laten veranderen zodat ik het gevoel van verschillende gebouwen met verschillende hoogtes kan wekken. Hiervoor ben ik erachter gekomen dat wanneer ik de alle vlakken behalve het bovenste vlak aan de 'bottom' als transform-origin zet, deze als een soort ankers blijven zitten. Nadat het me was gelukt om de gebouwen vast te zetten kwam het moment dat ik een plane maakte waar deze gebouwen op zouden komen te staan. Doormiddel van display:grid maak ik een raster waar ik alle blokken op vast kan zetten. Waar ik tegen aan liep was dat ik de <code>transform-behaviour: 3d-perspective</code> ook op deze plane moest zetten om de gebouwen in de hoogte te kunnen zien. Uiteindelijk lukte het me om de gebouwen aan de raster te koppelen, echter wilde de gebouwen niet de gehele grootte van het grid vlak aan nemen. De oplossing was elk gebouw in een eigen container stoppen en in deze containers de custom properties voor de breedte en diepte vast zetten zoals deze uit het raster komen.
 
