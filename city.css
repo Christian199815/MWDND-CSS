@@ -64,9 +64,11 @@ body {
   grid-auto-flow: dense;
 
   transform: 
-  rotateX(80deg)
-  /* translateZ(-300em); */
-  /* translateZ(-3000em); */
+  translateZ(100em)
+  translateY(1500px)
+  rotateX(20deg)
+  /* rotateZ(90deg) */
+
   ;
   transform-origin: center bottom;
   transform-style: preserve-3d;
@@ -173,17 +175,20 @@ body {
   
  @keyframes rotateZ {
   from {
+    transform-origin: center;
     transform: 
+    /* translateZ(-530em) */
+    translateY(340em)
     rotateX(80deg)
-    /* translateX(-100em) */
-    /* translateZ(var(--currentHeight)) */
     rotateZ(0turn);
   }
   to {
+    transform-origin: center;
+
     transform:
+    /* translateZ(-530em) */
+    translateY(340em)
     rotateX(80deg)
-    /* translateX(-100em) */
-    /* translateZ(var(--currentHeight)) */
     rotateZ(1turn);
   }
 } 
@@ -205,12 +210,14 @@ body {
 @keyframes HeightDown {
   from{
     transform: 
+    /* translateY(340em) */
     rotateX(80deg)
     translateZ(0px);
   }
 
   to{
     transform:  
+    /* translateY(340em) */
     rotateX(80deg)
     translateZ(var(--currentHeight));
   }
