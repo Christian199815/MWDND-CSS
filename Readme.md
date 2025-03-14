@@ -69,8 +69,28 @@ Voor de stad ben ik begonnen met het verder ontwikkelen van de doos die ik in ee
 <img src="/doc-images/city.png" style="width: 25em; aspect-ratio: 1/1;">
 </a>
 
-## Doelen voor volgende week
+## Feedback deze week
 empty
+
+<hr>
+
+## Week 3: Stad animaties, Cabine avontuur & 3d interface
+
+Na weer een productieve week ben ik een stuk meer opgeschoten met het bouwen van mijn hijskraan experience. Vorige week was ik al weer een stuk opgeschoten met het realiseren van mijn stad. Daar ben ik deze week weer mee verder gegaan. Ook ben ik van start gegaan met de cabine waar de gebruiker als hijskraan machinist te werk zal gaan. Maar om voor de gebruiker met de wereld te interacteren & natuurlijk ook voor het doel van deze opdracht is er wel een interface nodig. Vorige week heb ik daar al een belangrijke zet mee gedaan om deze te maken, deze was toen nog in 2d.
+
+### De Stad en haar animaties
+Deze week begon met een stad die niet op zn plek stond, gebouwen die soms wel te zien waren en soms niet en een perspectief waar ik niet heel tevreden mee was. Na te hebben gespart met een aantal docenten en medestudenten, kwam ik tot het inzicht dat ik een aantal aanpassingen moest maken om de stad en hijskraan het juiste gevoel te geven. Waarempel lukt het me om de stad dit te geven, om eerlijk te zijn weet ik nog steeds niet helemaal hoe dit komt. Oke ja het heeft te maken met de perspective en hoe de gebouwen staan. Maar de werking erachter ga ik nog achter komen, misschien in dit project anders in de projecten in de toekomst die ik met preserve-3d ga doen. 
+Na dat mijn stad er eindelijk goed uit begon te zien, was ik begonnen met het maken van een aantal animaties. Deze animaties zullen in de toekomst bedient gaan worden door de interface. 
+Ik begon met een animatie om de hoogte van de stad te veranderen, of wel het gevoel geven dat de hijskraan in hoogte veranderd. Hierna kwam de rotatie van de hijskraan. Wat hier lastig aan was dat ik niet moest vergeten dat de standaard aanpassingen van de transform aan de stad ook weer opnieuwe geschreven moesten worden in de nieuwe animaties anders zag het er toch ineens een heel stuk anders uit. Voor volgende week zal het doel worden om deze animaties aan de interface te gaan koppelen.
+
+### De cabine van de machinist
+Naast het bouwen van een stad heb ik natuurlijk ook een plek nodig waar de gebruiker naar de mooie stad kan gaan kijken. Mijn eerste gedacht was zo als ik was begonnen aan dit project, doormiddel van een aantal clip-paths was ik van plan om de panelen van de cabine te maken. Dit is natuurlijk zeker een optie, maar ergens best gek. Ik was al mijn hele project bezig met dozen, en in feite is deze cabine ook een doos. Daarom besloot ik om een doos te maken, ik gaf het dimensies en ik zag niks. Niks? ja niks, ik dacht huh maar ik zet het wel gewoon neer toch, waarom zie ik dan niks. Dus ik begon te spelen met de translate om op zoek te gaan naar de doos. Na veel speurwerk en zelfs het herpositioneren van de hele stad zag ik eindelijk de doos. na verder te puzzelen stond ik ook eindelijk in de doos, maar ik zag niks. Wat ergens best logisch is, want de panelen waren gekleurd met een opacity van 1. Dus deze moesten aangepast worden, en toen zag ik eindelijk mijn stad weer. Waar ik nu mee bezig ben is het plaatsen van een border om de randen van de panelen, dit lijkt toch iets lastiger te gaan. Nou ja met een box-shadow lukt het wel, maar qua performance gaat er iets stuk. Hier ga ik volgende week naar kijken.
+
+### Een interface in 3D
+Vorige week was ik bezig met het maken van een interface. Hier was ik met een joystick begonnen die doormiddel van een aantal animaties er voor zorgt dat er een wit vierkant op het scherm gaat bewegen. Nu is mijn idee dat ik met 3D aan de gang ga met mijn hele project, en ja ik zou er voor kunnen kiezen om een 2D paneel te maken dat de 3D wereld bedient. Maar het zou nog leuker zijn als ik ook daadwerkelijk een 3D interface heb. Daarom ben ik deze week ook begonnen met het zetten van de joystick op een 3D box. De doos heb ik gehaald uit mijn bestaande dozen. Hier plaatste ik de joystick op en na het aanpassen van een aantal lijnen in mijn CSS had ik ook daadwerkelijk een joystick in 3D. Daarboven op wil ik een aantal knoppen op mijn interface hebben die andere dingen zullen aanpasssen in de cabine. Ik ben er nog niet helemaal over uit hoeveel knoppen en welke output het gaat bedienen. Volgende week zal ik hier mee verder gaan.
+
+## Feedback deze week
+<= nader in te vullen
 
 <hr>
 
