@@ -2,6 +2,9 @@
 
 Een vierweekse duik in de kracht van moderne CSS zonder JavaScript.
 
+<details>
+      <summary>Proces</summary>
+
 ## Week 1: Ideegeneratie & Eerste Experimenten
 
 Deze week lag de focus op het bedenken van een concept en het uitvoeren van de eerste CSS-experimenten:
@@ -102,8 +105,32 @@ Vorige week was ik bezig met het maken van een interface. Hier was ik met een jo
 
 <hr>
 
-## Afsluiting
+
+
+</details>
+
+<details>
+      <summary>Eind Resultaat</summary>
+
+## Hoistin' Hanks Crane Day
 Na 4 weken CSS'en zonder maar iets van Javascript gebruikt te hebben is "Hoistin' Hanks Crane Day" eindelijk voltooid. 
+<img src="hankypanky.png" alt="">
+
+In deze kraan simulatie kan de gebruiker op de kraan cabine van de stad besturen, Zo kan de gebruiker omhoog, omlaag, naar links en rechts bewegen. De stad ziet er wel een beetje uit als een blokkendoos gemaakt voor kinderen, niet getreurd doormiddel van de "Realism Switch" kan de gebruiker de stad een stuk echter maken. De rekenkracht van de Matrix vindt dit helaas niet heel fijn, daarom zal de ervaring van de gebruiker hierdoor aangetast worden. Als de gebruiker de cabine betreedt voor een nacht shift maar de cabine nog in dag modus staat, kan de gebruiker de andere knop gebruiken. Hierdoor zal de lachende zon ons verlaten en zal de lachende maan aan de hemel staan. Hieronder staan de verschillende momenten uit dit verhaal!
+
+<img src="doc-images/Day.png" alt="">
+<img src="doc-images/Night.png" alt="">
+<img src="doc-images/Realism.png" alt=""><br>
+
+### Hoe ziet mijn code er globaal uit? <br>
+Voor het maken van deze prachtige simulatie heb ik mijn meeste html regels te danken aan dat ik de verschillende dozen die mijn gebouwen zijn geworden, heb moeten clonen keer op keer. <br>
+De CSS is opgebouwd uit een standaard custom properties :root. daarna een groot blok met CSS-nesting, waarna de verschillende region's komen waar extra functionaliteiten in zitten.
+
+<br><img src="doc-images/Html.png" alt="">
+<img src="doc-images/CSS.png" alt="">
+
+
+</details>
 
 
 <hr>
