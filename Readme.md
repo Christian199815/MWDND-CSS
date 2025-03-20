@@ -103,7 +103,7 @@ Vorige week was ik bezig met het maken van een interface. Hier was ik met een jo
 <hr>
 
 ## Afsluiting
-
+Na 4 weken CSS'en zonder maar iets van Javascript gebruikt te hebben is "Hoistin' Hanks Crane Day" eindelijk voltooid. 
 
 
 <hr>
