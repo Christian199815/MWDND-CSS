@@ -39,7 +39,7 @@
   --button-font-size: 18px;
   --button-font-weight: bold;
   --button-border-radius: 50%;
-  --button-transition: all 0.1s ease;
+  --button-transition: box-shadow 0.1s ease;
   
   /* Button shadow */
   --button-shadow-offset: 6px;
