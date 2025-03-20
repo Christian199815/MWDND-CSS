@@ -82,15 +82,29 @@ Na weer een productieve week ben ik een stuk meer opgeschoten met het bouwen van
 Deze week begon met een stad die niet op zn plek stond, gebouwen die soms wel te zien waren en soms niet en een perspectief waar ik niet heel tevreden mee was. Na te hebben gespart met een aantal docenten en medestudenten, kwam ik tot het inzicht dat ik een aantal aanpassingen moest maken om de stad en hijskraan het juiste gevoel te geven. Waarempel lukt het me om de stad dit te geven, om eerlijk te zijn weet ik nog steeds niet helemaal hoe dit komt. Oke ja het heeft te maken met de perspective en hoe de gebouwen staan. Maar de werking erachter ga ik nog achter komen, misschien in dit project anders in de projecten in de toekomst die ik met preserve-3d ga doen. 
 Na dat mijn stad er eindelijk goed uit begon te zien, was ik begonnen met het maken van een aantal animaties. Deze animaties zullen in de toekomst bedient gaan worden door de interface. 
 Ik begon met een animatie om de hoogte van de stad te veranderen, of wel het gevoel geven dat de hijskraan in hoogte veranderd. Hierna kwam de rotatie van de hijskraan. Wat hier lastig aan was dat ik niet moest vergeten dat de standaard aanpassingen van de transform aan de stad ook weer opnieuwe geschreven moesten worden in de nieuwe animaties anders zag het er toch ineens een heel stuk anders uit. Voor volgende week zal het doel worden om deze animaties aan de interface te gaan koppelen.
+<img src="/doc-images/city2.png" style="width: 25em; aspect-ratio: 1/1;">
+<video src="/doc-video/city-1.mp4" width="320" height="240" controls></video>
+<video src="/doc-video/city2.mp4" width="320" height="240" controls></video>
+
+
 
 ### De cabine van de machinist
 Naast het bouwen van een stad heb ik natuurlijk ook een plek nodig waar de gebruiker naar de mooie stad kan gaan kijken. Mijn eerste gedacht was zo als ik was begonnen aan dit project, doormiddel van een aantal clip-paths was ik van plan om de panelen van de cabine te maken. Dit is natuurlijk zeker een optie, maar ergens best gek. Ik was al mijn hele project bezig met dozen, en in feite is deze cabine ook een doos. Daarom besloot ik om een doos te maken, ik gaf het dimensies en ik zag niks. Niks? ja niks, ik dacht huh maar ik zet het wel gewoon neer toch, waarom zie ik dan niks. Dus ik begon te spelen met de translate om op zoek te gaan naar de doos. Na veel speurwerk en zelfs het herpositioneren van de hele stad zag ik eindelijk de doos. na verder te puzzelen stond ik ook eindelijk in de doos, maar ik zag niks. Wat ergens best logisch is, want de panelen waren gekleurd met een opacity van 1. Dus deze moesten aangepast worden, en toen zag ik eindelijk mijn stad weer. Waar ik nu mee bezig ben is het plaatsen van een border om de randen van de panelen, dit lijkt toch iets lastiger te gaan. Nou ja met een box-shadow lukt het wel, maar qua performance gaat er iets stuk. Hier ga ik volgende week naar kijken.
+<img src="/doc-images/cabin.png" style="width: 25em; aspect-ratio: 1/1;">
 
 ### Een interface in 3D
 Vorige week was ik bezig met het maken van een interface. Hier was ik met een joystick begonnen die doormiddel van een aantal animaties er voor zorgt dat er een wit vierkant op het scherm gaat bewegen. Nu is mijn idee dat ik met 3D aan de gang ga met mijn hele project, en ja ik zou er voor kunnen kiezen om een 2D paneel te maken dat de 3D wereld bedient. Maar het zou nog leuker zijn als ik ook daadwerkelijk een 3D interface heb. Daarom ben ik deze week ook begonnen met het zetten van de joystick op een 3D box. De doos heb ik gehaald uit mijn bestaande dozen. Hier plaatste ik de joystick op en na het aanpassen van een aantal lijnen in mijn CSS had ik ook daadwerkelijk een joystick in 3D. Daarboven op wil ik een aantal knoppen op mijn interface hebben die andere dingen zullen aanpasssen in de cabine. Ik ben er nog niet helemaal over uit hoeveel knoppen en welke output het gaat bedienen. Volgende week zal ik hier mee verder gaan.
 
-## Feedback deze week
-<= nader in te vullen
+<a href="https://codepen.io/Christian199815/pen/bNGovKW">
+<video src="/doc-video/interface-3d.mp4" width="320" height="240" controls></video>
+</a>
+
+
+<hr>
+
+## Afsluiting
+
+
 
 <hr>
 
