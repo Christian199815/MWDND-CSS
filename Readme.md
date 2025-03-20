@@ -99,8 +99,12 @@ Vorige week was ik bezig met het maken van een interface. Hier was ik met een jo
 <video src="/doc-video/interface-3d.mp4" width="320" height="240" controls></video>
 </a>
 
-## Feedback deze week
-<= nader in te vullen
+
+<hr>
+
+## Afsluiting
+
+
 
 <hr>
 
