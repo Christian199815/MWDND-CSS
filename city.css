@@ -17,300 +17,763 @@
     calc( ( 
         var(--plane-depth) - (var(--grid-rows) 
         * var(--grid-gap) ) ) / var(--grid-rows) );
+
+
+  --day-time: night;
+  --fun-mode: false;
+
+  --plane-y-position: 340em; /* Current vertical position */
+  --plane-min-height: 200em; /* Highest point (smaller value = higher position) */
+  --plane-max-height: 500em; /* Lowest point */
+  --plane-move-duration: 13s; /* Duration for vertical movement */
+  --plane-rotation: 0turn;   /* Current rotation angle */
+
+  --font-family: Arial, sans-serif;
+  --background-color: #f5f5f5;
+  
+  /* Button styles */
+  --button-width: 175px;
+  --button-height: 175px;
+  --button-background: #4a90e2;
+  --button-color: white;
+  --button-font-size: 18px;
+  --button-font-weight: bold;
+  --button-border-radius: 50%;
+  --button-transition: all 0.1s ease;
+  
+  /* Button shadow */
+  --button-shadow-offset: 6px;
+  --button-shadow-color: #2a6cb6;
+  --button-shadow-blur: 8px 10px;
+  --button-shadow-opacity: 0.2;
+  
+  /* Button hover state */
+  --button-hover-background: #5a9ee2;
+  
+  /* Button pressed state */
+  --button-pressed-background: #3a80d2;
+  --button-pressed-offset: 6px;
+  --button-pressed-shadow-blur: 2px 4px;
+  --button-pressed-shadow-opacity: 0.3;
+  
+  /* Status message */
+  --status-margin-top: 20px;
+  --status-font-size: 16px;
+  --status-color: #555;
+  --status-height: 20px;
+
+  /* Second button colors */
+  --button2-background: #e74c3c;
+  --button2-shadow-color: #c0392b;
+  --button2-hover-background: #f65e4f;
+  --button2-pressed-background: #d73c2c;
 }
 
+input[type="checkbox"] {
+  display: none;
+}
 
 body {
   margin: 0;
   height: 100dvh;
   display: grid;
   place-content: center;
-  /* align-items: center; */
-
   position: relative;
   overflow-x: hidden;
-  overflow:hidden;
-}
+  overflow: hidden;
 
-/*#region scene */
- .scene{
-      position: relative;
-      perspective: var(--perspective);
-      perspective-origin: center center;
-      /* animation: rotateY 10s linear infinite; */
+  background-image: yellow;
+  
+  /* Scene */
+  & > div:nth-of-type(1) {
+    position: relative;
+    perspective: var(--perspective);
+    perspective-origin: center center;
+    display: grid;
+    place-items: center;
+
+    transform-style: preserve-3d;
+
+    
+    /* Plane */
+    & > div:nth-of-type(1) {
+      width: var(--plane-width);
+      height: var(--plane-depth);
+      --currentHeight: -2000px;
+
       display: grid;
-      place-items: center;
-    }
+      grid-template-columns: repeat(var(--grid-columns), 1fr);
+      grid-template-rows: repeat(var(--grid-rows), 2fr);
+      row-gap: var(--grid-gap);
+      column-gap: var(--grid-gap);
+      grid-auto-flow: dense;
 
-    .scene, .scene *{
+      transform-origin: center;
       transform-style: preserve-3d;
+      
+      background-color: hsl(0, 0%, 85%);
+
+      translate: 0 calc((0 + var(--up, 0) - var(--down, 0))* 1em);
+      transform: 
+        translateY(340em)
+        rotateX(80deg)
+        rotateZ(0deg)
+        rotateZ(calc((0 - var(--rot-left, 0) + var(--rot-right, 0)) * 1deg));
+
+      animation:
+        up 10s linear infinite forwards paused,
+        down 10s linear infinite forwards  paused,
+        turnLeft 10s linear infinite forwards paused,
+        turnRight 10s linear infinite forwards paused;
+
+      
+      /* Box containers in plane */
+      & > div {
+        --x-size: var(--cell-width);
+        --y-size: var(--cell-depth);
+        --z-size: 180em; 
+        --hue: 220;
+        --z-size: calc(180 * var(--factorA, 1) * var(--factorB, 1) * var(--factorC, 1) * var(--factorD, 1) * 1em);
+        
+        transform-style: preserve-3d;
+        transform: translateZ(var(--z-size));
+        
+        /* Boxes in box containers */
+        & > div {
+          width: var(--x-size);
+          height: var(--y-size);
+          
+          position: relative;
+          transform-style: preserve-3d;
+          transform-origin: bottom center;
+          
+          /* Faces of boxes */
+          & > div {
+            position: absolute;
+            transform-style: preserve-3d;
+          }
+          
+          /* Front face */
+          & > div:nth-of-type(4) {
+            width: var(--x-size);
+            height: var(--y-size);
+            --lightness: 66%;
+            background-color: black;
+
+          }
+          
+          /* Back face */
+          & > div:nth-of-type(3) {
+            width: var(--x-size);
+            height: var(--y-size);
+            transform-origin: center bottom;
+            transform: rotateX(180deg) translateZ(var(--z-size)) translateY(var(--y-size));
+            --lightness: 62%;
+          }
+          
+          /* Top face */
+          & > div:nth-of-type(1) {
+            width: var(--x-size);
+            height: var(--z-size);
+            bottom: 100%;
+            transform-origin: bottom;
+            transform: rotateX(90deg);
+            --lightness: 74%;
+          }
+          
+          /* Bottom face */
+          & > div:nth-of-type(2) {
+            width: var(--x-size);
+            height: var(--z-size);
+            bottom: 0;
+            transform-origin: bottom;
+            transform: rotateX(-90deg) translateY(var(--z-size));
+            --lightness: 72%;
+          }
+          
+          /* Left face */
+          & > div:nth-of-type(5) {
+            width: var(--z-size);
+            height: var(--y-size);
+            right: var(--x-size); 
+            bottom: 0;
+            transform-origin: right bottom;
+            transform: rotateY(-90deg);
+            --lightness: 70%;
+
+          }
+          
+          /* Right face */
+          & > div:nth-of-type(6) {
+            width: var(--z-size);
+            height: var(--y-size);
+            left: var(--x-size); 
+            bottom: 0;
+            transform-origin: left bottom;
+            transform: rotateY(90deg);
+            --lightness: 70%;
+          }
+        }
+      }
+      
+      /* Building variations based on position */
+      & > div:nth-of-type(1) {
+        --hue: 110;
+      }
+      
+      & > div:nth-of-type(2n) {
+        --factorA: 1.14;
+        --hue: 120;
+      }
+      
+      & > div:nth-of-type(3n) {
+        --factorB: 1.23;
+        --hue: 160;
+      }
+      
+      & > div:nth-of-type(5n) {
+        --factorC: 1.31;
+        --hue: 320;
+      }
+      
+      & > div:nth-of-type(7n) {
+        --factorD: 1.07;
+        --hue: 80;
+      }
+      
+      & > div:nth-of-type(11n) {
+        --factorA: 1.14;
+        --factorD: 1.07;
+        --hue: 60;
+      }
+    }
+    
+
+  }
+/* interface box */
+  & > div:nth-of-type(2){
+    position: absolute;
+    z-index: 999;
+    bottom: 0;
+    left: 25%;
+    width: 50vw;
+    height: 13em;
+
+    background-color: #0e1d4a;
+    border: .9em solid black;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    /* labels for the switches */
+    & > label{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: var(--button-width);
+      height: var(--button-height);
+      color: var(--button-color);
+      font-size: var(--button-font-size);
+      font-weight: var(--button-font-weight);
+      border-radius: var(--button-border-radius);
+      cursor: pointer;
+      transition: var(--button-transition);
+      user-select: none;
+      position: relative;
+      top: 0;
     }
 
-    
 
-/* #endregion */
+/* shift switch */
+    & > label:nth-of-type(1){
+      background-color: var(--button-background);
+      box-shadow: 
+        0 var(--button-shadow-offset) 0 var(--button-shadow-color), 
+        0 var(--button-shadow-blur) rgba(0, 0, 0, var(--button-shadow-opacity));
+    }
+    /* shift switch hover effect */
+    & > label:nth-of-type(1):hover{
+      background-color: var(--button-hover-background);
+    }
 
-.plane {
-  width: var(--plane-width);
-  height: var(--plane-depth);
+    /* what happens when the shift switch is checked only styling */
+    & > label:nth-of-type(1):checked ~ label:nth-of-type(1){
+      top: var(--button-pressed-offset);
+      box-shadow: 
+        0 0 0 var(--button-shadow-color), 
+        0 var(--button-pressed-shadow-blur) rgba(0, 0, 0, var(--button-pressed-shadow-opacity));
+      background-color: var(--button-pressed-background);
+    }
 
-  --currentHeight: 1300px;
+    /* joystick */
+    & > div:nth-of-type(1){
+      width: 200px;
+      position: relative;
+      border-radius: 50%;
+      height: 200px;
+      background: linear-gradient(145deg, #2a2a2a, #333);
 
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
-  grid-template-rows: repeat(var(--grid-rows), 2fr);
-  row-gap: var(--grid-gap);
-  column-gap: var(--grid-gap);
-  grid-auto-flow: dense;
-
-  transform: 
-  translateZ(100em)
-  translateY(1500px)
-  rotateX(20deg)
-  /* rotateZ(90deg) */
-
-  ;
-  transform-origin: center bottom;
-  transform-style: preserve-3d;
-  
-  background-color: hsl(0, 0%, 85%);
-  border: 1px solid hsl(0, 0%, 70%);
-
-  animation:  
-      HeightDown 5s linear infinite alternate
-    /* rotateZ 10s linear infinite; */
-    ;
-
-
-}
-
-.box {  
-  width: var(--x-size);
-  height: var(--y-size);
-  
-  position: relative;
-  transform-style: preserve-3d;
-  transform-origin: bottom center;
-}
-
-.face {
-  position: absolute;
-  transform-style: preserve-3d;
-  background-color: hsl(
-    var(--hue),
-    100%,
-    var(--lightness)
-    );
-
-    /* transform: rotate(180deg); */
-}
-
-/* .face::after{
-  opacity: .2;
-  /* rotzooi die 3d breekt */
-
-
-.face.front,
-.face.back {
-  width: var(--x-size);
-  height: var(--y-size);
-}
-
-.face.bottom,
-.face.top {
-  width: var(--x-size);
-  height: var(--z-size);
-}
-
-/* Side faces should match the depth */
-.face.left,
-.face.right {
-  width: var(--z-size);
-  height: var(--y-size);
-}
-
-.face.front {
-  --lightness: 66%;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.7),
+        inset 0 5px 15px rgba(255, 255, 255, 0.1);
+      justify-content: center;
+      display: flex;
+      align-items: center;
+  /*  base  */
+    & > div:nth-of-type(1) {
+      width: 150px;
+      position: absolute;
+      border-radius: 50%;
+      height: 150px;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8),
+      inset 0 -2px 8px rgba(255, 255, 255, 0.1);
+      background: linear-gradient(145deg, #2d2d2d, #222);
+      pointer-events: none;
+  }
+  /*   direction */
+    & > div:nth-child(n + 2):nth-child(-n + 9) {
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.03);
   }
 
-.face.back {
-  transform-origin: center bottom;
-       
-  transform: rotateX(180deg) translateZ(var(--z-size)) translateY(var(--y-size));
-  --lightness:62%;
-}
-
-.face.bottom {
-  bottom: 0;
-  transform-origin: bottom;
-  transform: rotateX(-90deg) translateY(var(--z-size));
-  --lightness: 72%;
-}
-    
-.face.top {
-  bottom: 100%;
-  transform-origin: bottom;
-  transform: rotateX(90deg);
-  --lightness: 74%;
-}
-
-.face.right {
-  left: var(--x-size); 
-  bottom: 0;
-  transform-origin: left bottom;
-  transform: rotateY(90deg);
-  --lightness: 70%;
-}
-    
-.face.left {
-  right: var(--x-size); 
-  bottom: 0;
-  transform-origin: right bottom;
-  transform: rotateY(-90deg);
-  --lightness: 70%;
-  /* background-image: url("doc-images/box1.png"); */
-}
-
-/* #region Anim */
-  
- @keyframes rotateZ {
-  from {
-    transform-origin: center;
-    transform: 
-    /* translateZ(-530em) */
-    translateY(340em)
-    rotateX(80deg)
-    rotateZ(0turn);
+  & > div:nth-child(n + 2):nth-child(-n + 9):hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
-  to {
-    transform-origin: center;
 
-    transform:
-    /* translateZ(-530em) */
-    translateY(340em)
-    rotateX(80deg)
-    rotateZ(1turn);
+
+
+    /* #region up */
+
+  & > div:nth-of-type(2) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
   }
-} 
-
-
-@keyframes rotateY {
-  from {
-    transform: 
-    /* rotateX(80deg) */
-    rotateY(0turn);
+  /*   up hover */
+  & > div:nth-of-type(2):hover ~ div:nth-of-type(10)  {
+  transform: translateY(-35px);
   }
-  to {
-    transform:
-    /* rotateX(80deg) */
-    rotateY(1turn);
-  }
-} 
 
-@keyframes HeightDown {
+  /* #endregion */
+
+    /* #region right */
+  /*   right */
+  & > div:nth-of-type(3) {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+  /*   right hover */
+  & > div:nth-of-type(3):hover ~ div:nth-of-type(10)  {
+  transform: translateX(35px);
+  }
+  /* #endregion */
+
+    /* #region down */
+  /*   down */
+  & > div:nth-of-type(4) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+  /*   down hover */
+  & > div:nth-of-type(4):hover ~ div:nth-of-type(10) {
+  transform: translateY(35px);
+  }
+  /* #endregion */
+
+    /* #region left */
+  /*   left */
+  & > div:nth-of-type(5) {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+  /*   left hover */
+  & > div:nth-of-type(5):hover ~ div:nth-of-type(10) {
+  transform: translateX(-35px);
+  }
+  /* #endregion */
+
+    /* #region up-right */
+  /*   up-right */
+  & > div:nth-of-type(6) {
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    border-top-right-radius: 50px;
+  }
+  /*   up-right hover */
+  & > div:nth-of-type(6):hover ~ div:nth-of-type(10) {
+  transform: translate(25px, -25px);
+  }
+  /* #endregion */
+
+    /* #region down-right */
+  /*   down-right */
+  & > div:nth-of-type(7) {
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    border-bottom-right-radius: 50px;
+  }
+  /*   down-right hover */
+  & > div:nth-of-type(7):hover ~ div:nth-of-type(10) {
+  transform: translate(25px, 25px);
+  }
+  /* #endregion */
+
+    /* #region down-left */
+  /*   down-left */
+  & > div:nth-of-type(8) {
+    bottom: 15px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    border-bottom-left-radius: 50px;
+  }
+  /*   down-left hover */
+  & > div:nth-of-type(8):hover ~ div:nth-of-type(10) {
+  transform: translate(-25px, 25px);
+  }
+  /* #endregion */
+
+    /* #region up-left */
+  /*   up left */
+  & > div:nth-of-type(9) {
+    top: 15px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    border-top-left-radius: 50px;
+  }
+  /*   up-left hover */
+  & > div:nth-of-type(9):hover ~ div:nth-of-type(10) {
+  transform: translate(-25px, -25px);
+  }
+  /* #endregion */
+
+    /* #region joystick handle */
+  /*   joystick  */
+  & > div:nth-of-type(10) {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #444, #333);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6),
+      inset 0 -2px 5px rgba(0, 0, 0, 0.5),
+      inset 0 2px 5px rgba(255, 255, 255, 0.1);
+    z-index: 2;
+    transition: transform 0.2s ease;
+    pointer-events: none;
+  }
+  & > div:nth-of-type(10)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #3a3a3a, #333);
+    box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+  }
+  /* #endregion */
+
+    /* hover divs */
+  & > div:nth-child(n + 11):nth-child(-n + 14){
+      position: absolute;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 3;
+  }
+
+
+  /* #region labels */
+
+  /*     label-up */
+  & > div:nth-of-type(11) {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /*     label-right */
+  & > div:nth-of-type(12) {
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  /*     label-down */
+  & > div:nth-of-type(13) {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /*     label-left */
+  & > div:nth-of-type(14) {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+  }
+
+  /* #endregion */
+    }
+
+/* realism switch  */
+    & > label:nth-of-type(2){
+      background-color: var(--button2-background);
+      box-shadow: 
+        0 var(--button-shadow-offset) 0 var(--button2-shadow-color), 
+        0 var(--button-shadow-blur) rgba(0, 0, 0, var(--button-shadow-opacity));
+    }
+    /* realism switch on hover */
+    & > label:nth-of-type(2):hover{
+      background-color: var(--button2-hover-background);
+    }
+    /* realism switch checked */
+    & > label:nth-of-type(2):checked ~ label:nth-of-type(2){
+      top: var(--button-pressed-offset);
+      box-shadow: 
+        0 0 0 var(--button2-shadow-color), 
+        0 var(--button-pressed-shadow-blur) rgba(0, 0, 0, var(--button-pressed-shadow-opacity));
+      background-color: var(--button2-pressed-background);
+    }
+
+  }
+  /* Logo parent */
+  & > div:nth-of-type(3){
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    z-index: 9999;
+    animation: hideParent 5s linear forwards;
+
+    /* Logo title */
+    & img{
+      position: absolute;
+      z-index: 9999;
+      width: 100%;
+      height: 100%;
+      transform-origin: center center;
+      animation: logoAnim 5s linear forwards;
+    }
+  }
+
+}
+
+/* #region Logo Animation */
+@keyframes logoAnim{
   from{
-    transform: 
-    /* translateY(340em) */
-    rotateX(80deg)
-    translateZ(0px);
+    transform: scale(0);
+    opacity: 1;
   }
-
   to{
-    transform:  
-    /* translateY(340em) */
-    rotateX(80deg)
-    translateZ(var(--currentHeight));
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes hideParent {
+  0%, 99%{
+    visibility: visible;
+  }
+  100%{
+    visibility: hidden;
+    display: none;
+  }
+  
+}
+
+/* #endregion */
+
+/* #region Custom @properties */
+
+@property --up {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --down {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --rot-left {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --rot-right {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+/* #endregion */
+
+/* #region Crane Animations */
+
+@keyframes up {
+  0% {
+    --up: 0;
+  }
+  100% {
+    --up: 200;
+  }
+}
+
+@keyframes down {
+  0% {
+    --down: 0;
+  }
+  100% {
+    --down: 200;
+  }
+}
+
+@keyframes turnLeft {
+  0% {
+    --rot-left: 0;
+  }
+  100% {
+  --rot-left: 360;
+  }
+}
+
+@keyframes turnRight {
+  0% {
+    --rot-right: 0;
+  }
+  100% {
+    --rot-right: 360;
   }
 }
 
 /* #endregion */
 
-.box-container{
-  --x-size: var(--cell-width);
-  --y-size: var(--cell-depth);
-  --z-size: 180em; 
-  --hue: 220;
-  --z-size: calc(180 * var(--factorA, 1) * var(--factorB, 1) * var(--factorC, 1) * var(--factorD, 1) * 1em);
+/* #region Interactions */
 
-  
-  transform-style: preserve-3d;
-  transform: translateZ(var(--z-size));
+/* Up direction */
+body:has(div:nth-of-type(2) > div:nth-child(2) > div:nth-of-type(2):hover) div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: running, paused, paused, paused;
 }
 
-/* #region Change Buildings */
+/* Down direction */
+body:has(div:nth-of-type(2) > div:nth-child(2)  > div:nth-of-type(4):hover) div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: paused, running, paused, paused;
+}
 
-/* Base case - always applies */
-.box-container:nth-of-type(1){
-  --hue: 110;
+/* Left direction */
+body:has(div:nth-of-type(2) > div:nth-child(2)  > div:nth-of-type(3):hover) > div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: paused, paused, running, paused;
 }
-/* Using prime numbers with the specific factors I suggested */
-.box-container:nth-of-type(2n){
-  --factorA: 1.14; /* Using the factor value I suggested earlier */
-  --hue: 120;
+
+/* Right direction */
+body:has(div:nth-of-type(2) > div:nth-child(2)  > div:nth-of-type(5):hover) > div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: paused, paused, paused, running;
 }
-.box-container:nth-of-type(3n){
-  --factorB: 1.23; /* Using the factor value I suggested earlier */
-  --hue: 160;
+
+/* Fast right rotation (upper-right joystick) */
+body:has(div:nth-of-type(2) > div:nth-child(2)  > div:nth-of-type(6):hover) > div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: running, paused, running, paused;
 }
-.box-container:nth-of-type(5n){
-  --factorC: 1.31; /* Using the factor value I suggested earlier */
-  --hue: 320;
+
+/* Fast left rotation (upper-left joystick) */
+body:has(div:nth-of-type(2) > div:nth-child(2)  > div:nth-of-type(9):hover) > div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: running, paused, paused, running;
 }
-.box-container:nth-of-type(7n){
-  --factorD: 1.07; /* Using the factor value I suggested earlier */
-  --hue: 80;
+
+/* Down-right combination */
+body:has(div:nth-of-type(2) > div:nth-child(2)  > div:nth-of-type(7):hover) > div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: paused, running, running, paused;
 }
-.box-container:nth-of-type(11n){
-  /* Optional additional selector that could combine factors */
-  --factorA: 1.14;
-  --factorD: 1.07;
-  --hue: 60;
+
+/* Down-left combination */
+body:has(div:nth-of-type(2) > div:nth-child(2)  > div:nth-of-type(8):hover) > div:nth-of-type(1) > div:nth-of-type(1) {
+  animation-play-state: paused, running, paused, running;
+}
+/* Shift Switch */
+:root:has([value="sSwitch"]:checked) {
+	--day-time: day;
+}
+/* Realism Switch */
+:root:has([value="rSwitch"]:checked) {
+	--fun-mode: true;
 }
 
 /* #endregion */
 
-/* #region cabin */
-.cabin{
-  transform-style: preserve-3d;
+/* #region Style Queries */
 
-  position: absolute;
-  transform: 
-  translateZ(35em)
-  ;
+@container style(--day-time: day) {
+  body{
+    background-image: url("day.png");
+    background-size: cover;
+  }
 }
 
-.cabin .box-container{
-  --x-size: 20em;
-  --y-size: 20em;
-  --z-size: 20em; 
-
-  --hue: 360;
-
-  transform-style: preserve-3d;
+@container style(--day-time: night) {
+  body{
+    background-image: url("night.png");
+    background-size: cover;
+  }
 }
 
-.cabin .box-container .box .face{
-  opacity: .7;
-  background-color: #fafafa;
-  box-shadow: inset 1px 0px 0px 10px rgba(0,0,0,1);
+@container style(--fun-mode: false) {
+ 
+  body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div{
+    position: absolute;
+    transform-style: preserve-3d;
+    background-color: hsl(
+      var(--hue),
+      100%,
+      var(--lightness)
+    );
+  }
 }
 
-
-.cabin .box-container .box .face.front{
+@container style(--fun-mode: true) {
+  body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div{
+    position: absolute;
+    transform-style: preserve-3d;
+    background-image:
+          conic-gradient(from 90deg,
+            hsl(var(--hue), 100%, var(--lightness)) 90deg,
+             #000 90deg);
   
-  --lightness: 90%;
-  opacity: 0;
+    background-size: 10em 20em;
+  }
 }
-
-.cabin .box-container .box .face.back{
-  /* opacity: .1; */
-}
-
-
-/* #region Remotes */
-
-
-
-
-
 /* #endregion */
